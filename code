@@ -1,0 +1,68 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Nov  3 10:54:13 2018
+
+@author: salan406
+"""
+
+# ejercicio 1
+x = 5
+y = 5
+z = 5
+n = 7
+coord =[(i,j,k) for i in range (x+1) for j in range (y+1) for k in range (z+1) if i+j+k != n]
+
+# ejercicio 2
+nums = "1 13 33 11 22 44 66"
+result = all(( i > 0 ) for i in list(map(int, nums.split(" ")))) and (any(( i < 10 ) for i in list(map(int, nums.split(" ")))) or not(any(( i % 11) for i in list(map(int, nums.split(" "))))))
+
+# ejercicio 3
+leest = [
+  'We are learning Python', 
+  'Functional programming in Python', 
+  'What are this Python functions for?', 
+  'Do we really need Python?', 
+  'Python rulez!']
+
+python = sum([True for palabra in leest for palabra_1 in palabra.split() if 'Python' in palabra_1])
+
+# ejercicio 4
+C = 50
+k = 5
+
+resultado = sum([n for n in range(C+1) if (n**2)%k == 0])
+
+# ejercicio 5 
+
+def fibo(n):
+  if n == 1 : 
+    return [1]
+  elif n == 2 : 
+    return [1, 1]
+  else :
+    f = fibo(n - 1)
+    return f + [f[-1] + f[-2]]
+  
+print('cubos de los primeros 30 números de Fibonacci:')
+print([f**3 for f in fibo(30)])
+# ejercicio 6
+def appendChar(char, grupo):
+    if len(grupo) == 0:
+        return  [char]
+    elif char == grupo[-1][-1]:
+        nuevoGrupo = grupo.copy()
+        nuevoGrupo[-1] = nuevoGrupo[-1] + char 
+        return nuevoGrupo
+    else :
+        return grupo + [char]
+
+
+def groupby(chain, grupo = []):
+    if len(chain) == 1:
+        return appendChar(chain[0], grupo)
+    else :
+        return groupby(chain[1:], appendChar(chain[0], grupo))
+    
+recibido = '111116666677cc77777'
+grupos = [(len(chain), chain[0]) for chain in groupby(recibido) ]
+print('Tuplas:', grupos) 
